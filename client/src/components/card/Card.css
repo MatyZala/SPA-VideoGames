@@ -1,0 +1,17 @@
+
+.card{
+    width: 20rem;
+    height: 20rem;
+    margin: 16px;
+}
+
+#vgimg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    max-width: 10rem;
+    max-height: 5rem;
+}
+

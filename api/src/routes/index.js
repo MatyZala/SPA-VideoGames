@@ -14,21 +14,6 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-
-const getGenres = async ()=>{
-    try {
-        const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-        const info = genresApi.data.results
-        for (let i = 0; i < info.length; i++) {
-        
-        let name = info[i].name
-        await Genre.create({ name})
-        }
-    } catch (error) {
-        
-    }
- }
-
 const findGameApi = async (attributes) => {    
     const obj = await axios.get(`https://api.rawg.io/api/games/${attributes}?key=${API_KEY}`)
     const game = {
@@ -38,11 +23,12 @@ const findGameApi = async (attributes) => {
         rating: obj.data.rating,
         platforms: obj.data.platforms.map(p => p.platform.name),
         description: obj.data.description,
-        genres: obj.data.genres.map(p => p.name)
+        genres: obj.data.genres.map(p => p.name),
+        image: obj.data.background_image
     }
     if(game.ID)return game
     return false    
-}
+};
 
 const getApiInfo = async () => {
 
@@ -63,88 +49,95 @@ const getApiInfo = async () => {
     }));
     
     return apiInfo;
-}
+};
 
 const getDbInfo = async () => {
     return await Videogame.findAll({
         include: {
             model: Genre,
-            attributes: ['name'],
+            attributes: ['ID','name'],
             through: {
                  attributes: [],
             },
         }    
     })
-}
+};
 
 const getAllGames = async () => {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo();
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal; 
-}
+};
 
 router.get('/videogames', async (req, res)=> {
     const name = req.query.name
     let totalVideogames = await getAllGames();
     if (name){
         let videogameName = totalVideogames.filter(g => g.name.toLowerCase().includes(name.toLowerCase()))
-        limit: 15
         videogameName.length ? 
         res.status(200).json(videogameName) :
         res.status(404).send('Game not found'); 
     }else{
         res.status(200).json(totalVideogames)
+/*         console.log(totalVideogames); */
     }
-})
+});
 
 router.get('/videogame/:idVideogame', async (req, res,)=>{
-    const { idVideogame } = req.params
+    const  {idVideogame} = req.params
+    let game = await findGameApi(idVideogame)
+    res.json(game);
+});
+
+
+router.get("/genres", async (req, res) => {
     try {
-        let game = await findGameApi(idVideogame)
-        if(game)res.json(game)
-    } catch (err) {
-        res.json('Game not found')
-    }
-
-})
-
-
-router.get('/genres',async (req, res)=>{
-    try {
-        await getGenres()
-        const allGenres = await Genre.findAll()
-        res.json(allGenres)
+      let genres = await Genre.findAll();
+      if (!genres.length) {
+        const genresApi = await axios.get(
+          `https://api.rawg.io/api/genres?key=${API_KEY}`
+        );
+        genres = await genresApi.data.results.map((el) => ({
+          name: el.name,
+        }));
+        await Genre.bulkCreate(genres);
+        genres = await Genre.findAll();
+      }  
+      res.send(genres);
     } catch (error) {
-        res.status(404).json({error:'No se pudieron obtener los tipos'})
+      console.log(error);
     }
-})
+});
 
-router.post('/videogame', async (req, res)=>{
-    let{ 
-        name,
-        description,
-        released,
-        rating,
-        platforms,
-        genre
-    } = req.body
-
+router.post('/videogame', async (req, res) => {
     try {
-        let videogameCreated = await Videogame.create({
+        let {
+            name,
+            description,
+            released,
+            rating,
+            platforms,
+            genres
+        } = req.body;
+        let gameCreated = await Videogame.create({
             name,
             description,
             released,
             rating,
             platforms
-        })     
-             genre.forEach(async element => {
-             await videogameCreated.addGenre(element)});
-            res.send({msg:'Videojuego creado con exito'})
-           }catch(error){
-               res.status(404).json({error: 'El videojuego no pudo ser creado'})
-           }               
+        })
+        let genreDb = await Genre.findAll({
+            where: {name: genres}
+        })
+/*         console.log(genreDb) */
+        gameCreated.addGenre(genreDb);
+        res.send('Personaje creado con exito!');
+    } catch (e) {
+        console.error(e)  
+    }
+});
 
-})
+
 
 module.exports = router;
