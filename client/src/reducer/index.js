@@ -33,7 +33,7 @@ function rootReducer (state = initialState, action) {
             };
         case 'REFRESH':{
             return({...state, gameDetail: undefined})
-        }
+        };
         case 'ORDER_BY_NAME': 
         let sortedArr = action.payload === 'Asc' ? 
         state.videogames.sort(function (a, b) {
@@ -96,12 +96,11 @@ function rootReducer (state = initialState, action) {
                 let filterVideogames = [];
                     filterVideogames = state.videogames.filter(vg => (typeof vg.genres[0] === 'string')
                     ? vg.genres.includes(action.payload) 
-                    : vg.genres[0]?vg.genres[0].name === action.payload 
-                    : vg.genres[0] && vg.genres[1]?vg.genres[1].name === action.payload
-                    : vg.genres[2]?vg.genres[2].name === action.payload
-                    : vg.genres[3]?vg.genres[3].name === action.payload
-                    : vg.genres[4]?vg.genres[4].name
-                    :undefined)
+                    : (vg.genres[0] && vg.genres[0].name === action.payload) 
+                    || (vg.genres[1] && vg.genres[1].name === action.payload)
+                    || (vg.genres[2] && vg.genres[2].name === action.payload)
+                    || (vg.genres[3] && vg.genres[3].name === action.payload)
+                    || (vg.genres[4] && vg.genres[4].name === action.payload))
                 if(action.payload === 'All') filterVideogames = state.unfilteredVideogame
                 return {
                   ...state,

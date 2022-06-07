@@ -33,6 +33,7 @@ export function Filtros(props){
             <div className='selector'> 
             <div className='selectd'>
             <select className="genero" onChange={(e) => handleFilterGenres(e)}>
+                <option hidden> Filtrar Genero</option>
             <option value="All">Todos Los Generos</option>
             {genres&&genres.map(genre => {
                 return(
@@ -44,18 +45,21 @@ export function Filtros(props){
           </div>
                 <div className='selecta'>
             <select  onChange={e => handleSort(e)}>
+                <option hidden>Alfabeticamente</option>
                 <option value='Asc'>A - Z</option>
                 <option value='Des'>Z - A</option>
             </select>
             </div>
                 <div className='selectb'>
             <select onChange={e => handleSortRating(e)}>
+                <option hidden>Rating</option>
                 <option value='top'>Mayor Rating</option>
                 <option value='down'>Menor Rating</option>
             </select>
             </div>
                 <div className='selectc'>
             <select onChange={e => handleFilterCreated(e)}>
+                <option hidden>Filtrar</option>
                 <option value="all">Todos Los Juegos</option>
                 <option value="db">Juegos Creados</option>
                 <option value="api">Juegos Existentes</option>

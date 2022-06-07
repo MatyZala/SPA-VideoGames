@@ -24,22 +24,6 @@ export function orderByName(payload) {
     }
 }
 
-/* export const filterVideogame = (filter, videogames, unfilteredVideogames) => {
-  console.log('ENTRO AL FILTER');
-  console.log(videogames, unfilteredVideogames);
-return((dispatch) => {
-  if(videogames !== unfilteredVideogames) videogames = unfilteredVideogames
-  let gameFilter = []
-  if(filter === 'api'){
-    gameFilter = videogames.filter(g => (typeof g.ID) === 'number')
-  } else {
-    if(filter === 'db'){
-      gameFilter = videogames.filter(g => (typeof g.id) === 'string')
-    } else gameFilter = videogames
-  }
-  return dispatch({type: 'FILTER_VIDEOGAMES', payload:gameFilter})
-})} */
-
 export function filterCreated(payload){
     return {
         type: 'FILTER_CREATED',

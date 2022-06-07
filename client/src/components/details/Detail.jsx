@@ -5,6 +5,7 @@ import { getDetail } from "../../actions";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import './Detail.css'
+import img from '../../media/imagen.jpg'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function Detail() {
           <div className="n">{myVideogame.name}</div>
           <img
             className="ide"
-            src={myVideogame.img ? myVideogame.img : myVideogame.image}
+            src={myVideogame.image || img}
             alt=""
           />
           <span className="g">

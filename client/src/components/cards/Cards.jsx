@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import Card from '../card/Card'
 import './Cards.css'
 import loading from'../../media/loading.gif'
+import imagen from '../../media/imagen.jpg'
 
   export function Cards(props){
 
@@ -34,7 +35,7 @@ import loading from'../../media/loading.gif'
       <div className='cc'>
          <div className='paginado'>
          <div className='a'><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
-          <h3 className='num'>Page: {page}</h3>
+          <h3 className='num'>Pag: {page}</h3>
           <div className='s' ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
         </div>
         <div id="vgCards">
@@ -43,7 +44,7 @@ import loading from'../../media/loading.gif'
             <Card
             ID = {vg.ID}
             name= {vg.name}
-            image= {vg.image}
+            image= {vg.image || imagen}
             genres = {(typeof vg.genres[0] === 'string')? vg.genres : vg.genres.map(g => g.name)}
             />
           </div>          
@@ -54,7 +55,7 @@ import loading from'../../media/loading.gif'
         </div>
         <div className='paginado'>
           <div ><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
-          <h3 >Page: {page}</h3>
+          <h3 >Pag: {page}</h3>
           <div ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
         </div>
       </div>
