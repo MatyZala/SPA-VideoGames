@@ -3,6 +3,7 @@ const { Router } = require('express');
 require('dotenv').config();
 const { API_KEY } = process.env;
 const { Videogame, Genre } = require('../db');
+const { v4: uuidv4, validate: uuidValidate } = require("uuid");
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -85,9 +86,20 @@ router.get('/videogames', async (req, res)=> {
 });
 
 router.get('/videogame/:idVideogame', async (req, res,)=>{
-    const  {idVideogame} = req.params
-    let game = await findGameApi(idVideogame)
-    res.json(game);
+    const { idVideogame } = req.params;
+
+    if (uuidValidate(idVideogame)) { 
+      
+      const getIdDb = await Videogame.findByPk(idVideogame, { 
+        include: Genre
+      });
+
+      res.status(200).json( getIdDb )
+
+    } else { 
+        let game = await findGameApi(idVideogame)
+        res.json(game); 
+    }
 });
 
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postVideogame, getAllGenres } from "../../actions";
+import './CreateVideoGame.css'
+import js from '../../media/js.png'
 
 export default function CreateVideogame() {
   const genres = useSelector((state) => state.genres);
@@ -107,17 +109,22 @@ export default function CreateVideogame() {
 
     useEffect(() => {
       dispatch(getAllGenres());
-    }, [dispatch]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <>
+        <><div className='contenedor'>
+            <div className="lth">
         <Link to='/home'>
-            <button>HOME</button>
+            <button className="bth">HOME</button>
         </Link>
+        </div>
         <form className="form" onSubmit={(e) => handleSubmit(e)}>
-            <div>
-                <label>Nombre:</label>
-                <input type="text" 
+            <div className="name">
+                <label><u>Nombre:</u></label>
+                <input className="ni"
+                 placeholder="Ingresar Nombre"
+                type="text" 
                 value={input.name} 
                 onChange={(e) => handleChange(e)} 
                 name='name'/>
@@ -125,9 +132,10 @@ export default function CreateVideogame() {
                     <p>{errors.name}</p>
                 )}
             </div>
-            <div>
-                <label>Descripcion:</label>
+            <div className="desc">
+                <label><u>Descripcion:</u></label>
                 <input type="text"
+                placeholder="Ingresar Descripción"
                 value={input.description}
                 onChange={handleChange} 
                 name='description'/>
@@ -135,8 +143,8 @@ export default function CreateVideogame() {
                     <p>{errors.description}</p>
                 )}
             </div>
-            <div>
-                <label>Fecha De Lanzamiento:</label>
+            <div className="fdl">
+                <label><u>Fecha De Lanzamiento:</u></label>
                 <input type="date"
                 value={input.released}
                 onChange={handleChange} 
@@ -145,9 +153,10 @@ export default function CreateVideogame() {
                     <p>{errors.released}</p>
                 )}
             </div>
-            <div>
-                <label>Rating:</label>
+            <div className="rat">
+                <label><u>Rating:</u></label>
                 <input type="text"
+                placeholder="Ingresar Rating"
                 value={input.rating} 
                 onChange={handleChange} 
                 name='rating'/>
@@ -155,8 +164,8 @@ export default function CreateVideogame() {
                     <p>{errors.rating}</p>
                 )}
             </div>
-            <div>
-                <label>Plataformas:</label>
+            <div className="plt">
+                <label><u>Plataformas:</u></label>
                 <label><input 
                 type="checkbox"
                 value='PC'
@@ -252,8 +261,8 @@ export default function CreateVideogame() {
                 )}
             </div>
             <div>
-            <div>
-          <label>GENEROS</label>
+            <div className="gs">
+          <label><u>GENEROS</u></label>
           <select onChange={(e) => handleSelect(e)}>
             {genres.map((genres) => (
               <option key={genres.id} value={genres.name}>
@@ -261,14 +270,14 @@ export default function CreateVideogame() {
               </option>
             ))}
           </select>
-          <ul>
+{/*           <ul>
             <li>{input.genres.map((el) => el + " ,")}</li>
-          </ul>
+          </ul> */}
         </div>
         {input.genres.map((el) => (
-          <div>
+          <div className="gres">
             <p>{el}</p>
-            <button onClick={() => handleDelete(el)}>
+            <button className="btg" type='button' onClick={() => handleDelete(el)}>
               X
             </button>
           </div>
@@ -277,8 +286,19 @@ export default function CreateVideogame() {
                     <p>{errors.genres}</p>
                 )}
             </div>
-            <button disabled={button} type="submit">Create Videogame</button>
+            <div className="cb">
+            <button className="cv" disabled={button} type="submit">
+                <div className="js">
+                    <img src={js} alt="" />
+                </div>
+                    <span className="tt"> <u>Crear VideoJuego</u> </span>              
+                    <div className="js">
+                    <img src={js} alt="" />
+                </div>    
+                </button>
+            </div>
         </form>
+        </div>
         </>
     )
 }

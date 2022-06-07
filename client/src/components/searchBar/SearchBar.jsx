@@ -1,7 +1,7 @@
-
 import React ,{ useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchVideogames } from "../../actions";
+import './SearchBar.css'
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -12,14 +12,13 @@ export default function SearchBar() {
     setName(e.target.value);
     console.log(name);
   }
-
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(searchVideogames(name));
   }
-
+  
   return (
-    <div>
+    <div className='box'>
       <input
         type="text"
         placeholder="Buscar Videojuego..."

@@ -8,12 +8,9 @@ export default function LandingPage(){
         <div className="absolute">            
         <video className="video" src={landing} autoPlay loop muted/>            
         <h1>Bienvenidos a Wiki-Games</h1>
-        <NavLink to='/home'>
+        <NavLink to='/home'>  
             <button className="boton">Ingresar</button>
         </NavLink>
         </div>
     )
 }
-
-
-

@@ -18,13 +18,30 @@
 }
 
 .absolute > h1 {
-    color: grey;
+    background: #ccc;
+    background: linear-gradient(to right,
+        rgba(235, 13, 13, 0.74), rgb(248, 122, 118)
+    );
     font-size: 50px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .boton {
+    border: inset 2px white ;
+    border-radius: 5px;
+    background: linear-gradient(to left,
+    rgba(235, 13, 13, 0.74), rgb(248, 122, 118));
     margin-top: 8px;
-    color: white;
+    color: rgb(192, 184, 184);
     font-size: 25px;
+    transition: 0.7s;
 }
 
+.boton:hover{
+    cursor: pointer;
+    background: linear-gradient(to right,
+    rgba(235, 13, 13, 0.74), rgb(248, 122, 118));
+    color:rgb(192, 184, 184);
+
+}

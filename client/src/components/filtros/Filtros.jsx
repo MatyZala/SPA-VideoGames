@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
 import { filterCreated,orderByName,orderByRating,filterVideogamesByGenre} from '../../actions/index'
-import { useState } from 'react'
+import './Filtros.css'
 
 export function Filtros(props){
 
     const genres = props.genres
-    const [orden, setOrden] = useState('')
     
     function handleFilterGenres(e) {
         e.preventDefault();
@@ -14,49 +13,54 @@ export function Filtros(props){
 
     function handleSort (e){
         e.preventDefault();
-        props.orderByName(e.target.value)      
-        setOrden(`Ordenado ${e.target.value}`)
+        props.orderByName(e.target.value)
+        props.setCont(props.cont + 1)  
         console.log(e.target.value);
     }
 
     function handleSortRating(e) {
         e.preventDefault();
-        props.orderByRating(e.target.value)        
-        setOrden(`Ordenado ${e.target.value}`)
+        props.orderByRating(e.target.value)
+        props.setCont(props.cont + 1)        
     }
     
     function handleFilterCreated (e){
-        props.filterCreated(e.target.value)
+        props.filterCreated(e.target.value, props.videogames , props.unfilteredVideogame)
+        console.log('ENTRO');
     }
 
         return(            
-            <div>                
-            <label>Generos</label>
+            <div className='selector'> 
+            <div className='selectd'>
             <select className="genero" onChange={(e) => handleFilterGenres(e)}>
-            <option value="All">Todos</option>
+            <option value="All">Todos Los Generos</option>
             {genres&&genres.map(genre => {
                 return(
-                <option key={genre.id} value={genre.name}>
+                <option key={genre.ID} value={genre.name}>
                 {genre.name}
               </option>)
 })}
           </select>
-                <label>Orden Alfabetico</label>
+          </div>
+                <div className='selecta'>
             <select  onChange={e => handleSort(e)}>
-                <option value='Asc'>Ascendente</option>
-                <option value='Des'>Descendente</option>
+                <option value='Asc'>A - Z</option>
+                <option value='Des'>Z - A</option>
             </select>
-                <label>Orden por rating</label>
+            </div>
+                <div className='selectb'>
             <select onChange={e => handleSortRating(e)}>
-                <option value='top'>Mayor</option>
-                <option value='down'>Menor</option>
+                <option value='top'>Mayor Rating</option>
+                <option value='down'>Menor Rating</option>
             </select>
-                <label>Filtros</label>
+            </div>
+                <div className='selectc'>
             <select onChange={e => handleFilterCreated(e)}>
-                <option value="all">Todos</option>
-                <option value="created">Creados</option>
-                <option value="api">Existentes</option>
+                <option value="all">Todos Los Juegos</option>
+                <option value="db">Juegos Creados</option>
+                <option value="api">Juegos Existentes</option>
             </select>   
+            </div>
             </div>
         )
 }
@@ -64,7 +68,9 @@ export function Filtros(props){
 
 function mapStateToProps(state){
     return{
-        genres: state.genres
+        genres: state.genres, 
+        videogames: state.videogames,
+        unfilteredVideogame: state.unfilteredVideogame,
     }
 }
 

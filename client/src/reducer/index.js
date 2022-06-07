@@ -1,40 +1,46 @@
 
 const initialState = { 
     videogames: [],
-    gameDetail: {},
-    genres : [],  
+    gameDetail: undefined,
+    genres : [],
+    unfilteredVideogame: [],  
 } 
 function rootReducer (state = initialState, action) {
     switch(action.type) {
         case 'GET_ALL_GAMES':
-            return {...state,videogames: action.payload};   
+            return ({...state,videogames: action.payload, unfilteredVideogame: action.payload});   
         case 'GET_DETAILS':
-			if (typeof action.payload.genres[0] === 'object') {
-				action.payload.genres = action.payload.genres.map((g) => g.name);
-			}
 			return {
 				...state,			
 				gameDetail: action.payload,			
             };     
         case 'FILTER_CREATED':
+            if(state.videogames !== state.unfilteredVideogame) state.videogames = state.unfilteredVideogame
             const allGames = state.videogames;
-            const createdFilter =
-             action.payload === 'created'
-              ? allGames.filter(vg => vg.createdInDb)
-              : allGames.filter(vg => !vg.createdInDb)
+            console.log(allGames);
+            let createdFilter = []
+            if(action.payload === 'db'){
+                createdFilter = allGames.filter(vg => (typeof vg.ID) === 'string')
+            } else{
+                if(action.payload === 'db'){
+                    createdFilter = allGames.filter(vg => (typeof vg.ID) === 'number')
+                } else createdFilter = state.unfilteredVideogame
+            }
             console.log(createdFilter);
             return{
                 ...state,
-                videogames: action.payload === 'all'
-                ? state.allGames : createdFilter
+                videogames: createdFilter
             };
+        case 'REFRESH':{
+            return({...state, gameDetail: undefined})
+        }
         case 'ORDER_BY_NAME': 
         let sortedArr = action.payload === 'Asc' ? 
         state.videogames.sort(function (a, b) {
             if (a.name > b.name) {
                 return 1;
             }
-            if (b.name > a.name) {
+            if (b.name > a.name) { 
                 return -1;
             }
             return 0;
@@ -86,14 +92,20 @@ function rootReducer (state = initialState, action) {
                   videogames: action.payload,
                 };
         case 'FILTER_BY_GENRE':
-                const allVideogames = state.videogames;
-                const genreFiltered =
-                  action.payload === "All"
-                    ? allVideogames
-                    : allVideogames.filter((el) => el.genres.includes(action.payload));
+            if(state.videogames !== state.unfilteredVideogame) state.videogames = state.unfilteredVideogame
+                let filterVideogames = [];
+                    filterVideogames = state.videogames.filter(vg => (typeof vg.genres[0] === 'string')
+                    ? vg.genres.includes(action.payload) 
+                    : vg.genres[0]?vg.genres[0].name === action.payload 
+                    : vg.genres[0] && vg.genres[1]?vg.genres[1].name === action.payload
+                    : vg.genres[2]?vg.genres[2].name === action.payload
+                    : vg.genres[3]?vg.genres[3].name === action.payload
+                    : vg.genres[4]?vg.genres[4].name
+                    :undefined)
+                if(action.payload === 'All') filterVideogames = state.unfilteredVideogame
                 return {
                   ...state,
-                  videogames: genreFiltered,
+                  videogames: filterVideogames,
                 };
         case 'GET_ALL_GENRES':
                 return{

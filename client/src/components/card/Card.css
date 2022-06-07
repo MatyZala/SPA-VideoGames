@@ -1,17 +1,84 @@
-
-.card{
-    width: 20rem;
-    height: 20rem;
-    margin: 16px;
-}
-
-#vgimg{
+.contenido{
+    width: 100%;
+    max-width: 1200px;
+    height: 430px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    max-width: 10rem;
-    max-height: 5rem;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.514);    
+    border-radius:5px;
+    margin-bottom: 5rem;
 }
+.contenido:hover{
+    background: rgba(87, 87, 87, 0.616);
+}
+
+.link{
+    text-decoration: none;
+}
+
+.contenido h3{
+    color:rgb(167, 166, 166)
+}
+
+.contenido .card{
+    width: 330px;
+    height: 430px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;   
+}
+
+.contenido .card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
+}
+
+.contenido .card img{
+    width: 330px;
+    height: 220px;
+    border-radius: 5px;
+}
+
+.contenido .card h4 {
+    font-weight: 600;  
+    color: rgb(167, 166, 166);  
+}
+
+.contenido .card p{
+    padding: 0 1rem;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(167, 166, 166);
+}
+
+.contenido .card a{
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(167, 166, 166);    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

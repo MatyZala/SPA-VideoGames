@@ -11,12 +11,34 @@ export const getAllGames = () => {
     }
 }
 
+export const refresh = () => {
+  return async (dispatch) => {
+    dispatch({type:'REFRESH'})
+  }
+}
+
 export function orderByName(payload) {
     return {
         type: 'ORDER_BY_NAME',
          payload,
     }
 }
+
+/* export const filterVideogame = (filter, videogames, unfilteredVideogames) => {
+  console.log('ENTRO AL FILTER');
+  console.log(videogames, unfilteredVideogames);
+return((dispatch) => {
+  if(videogames !== unfilteredVideogames) videogames = unfilteredVideogames
+  let gameFilter = []
+  if(filter === 'api'){
+    gameFilter = videogames.filter(g => (typeof g.ID) === 'number')
+  } else {
+    if(filter === 'db'){
+      gameFilter = videogames.filter(g => (typeof g.id) === 'string')
+    } else gameFilter = videogames
+  }
+  return dispatch({type: 'FILTER_VIDEOGAMES', payload:gameFilter})
+})} */
 
 export function filterCreated(payload){
     return {
@@ -25,20 +47,6 @@ export function filterCreated(payload){
     }
 }
 
-/* export function getVideogameByName(name){
-    return async function(dispatch){
-        try {
-            let res = await axios.get('http://localhost:3001/videogames?name=' + name)
-            console.log(res.data);
-           return dispatch({
-                type: 'GET_VIDEOGAME_BY_NAME', payload: res.data
-            })
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
-} */
 export function searchVideogames(name) {
   return async function (dispatch) {
     try {
@@ -54,6 +62,7 @@ export function searchVideogames(name) {
     }
   };
 }
+
 export function orderByRating(payload) {
     return {
         type: 'ORDER_BY_RATING',

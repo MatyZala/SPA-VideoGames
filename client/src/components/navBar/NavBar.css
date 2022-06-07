@@ -1,0 +1,25 @@
+.NB{
+  display: grid;  
+  position: fixed ;
+}
+
+.h{
+    grid-area: 1 / 1 / 2 / 2;
+    text-decoration: none;
+    color: rgba(28, 192, 241, 0.959);
+    font-weight: 600;
+    letter-spacing: 0.8px;    
+}
+
+.v{
+    grid-area: 1 / 5 / 2 / 6;
+    color: rgba(28, 192, 241, 0.959);
+    font-weight: 600;
+    letter-spacing: 0.8px; 
+    margin-right: 10px;   
+    margin-top: 45px;
+}
+
+
+
+

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {getAllGames, getAllGenres} from '../../actions'
+import {getAllGames} from '../../actions'
 import {useState, useEffect} from 'react'
 import Card from '../card/Card'
 import './Cards.css'
@@ -17,7 +17,7 @@ import loading from'../../media/loading.gif'
 
     useEffect(()=>{
       props.getAllGames()
-      props.getAllGenres()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if(page < 1) {
@@ -31,26 +31,31 @@ import loading from'../../media/loading.gif'
     }
 
     return(
-      <div>
+      <div className='cc'>
+         <div className='paginado'>
+         <div className='a'><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
+          <h3 className='num'>Page: {page}</h3>
+          <div className='s' ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
+        </div>
         <div id="vgCards">
           {videogame[0] ? videogame.map(vg =>
-          <div className='cardsStyle'>
+          <div className='cardsStyle' key={vg.ID}>
             <Card
             ID = {vg.ID}
             name= {vg.name}
             image= {vg.image}
-            genres = {vg.genres}
+            genres = {(typeof vg.genres[0] === 'string')? vg.genres : vg.genres.map(g => g.name)}
             />
           </div>          
-          ): (<div>
-            <img src={loading} alt="Loading" />
-            <p>Cargando videogames</p>
+          ): (<div className='cat'>
+            <img className='imgl' src={loading} alt="Loading" />
+            <p>Cargando VideoJuegos</p>
             </div>)}
         </div>
         <div className='paginado'>
-          <button onClick={()=> setPage(page - 1)}> Atras </button>
-          <h3 className='num'>Page: {page}</h3>
-          <button onClick={() => setPage(page + 1)}> Adelante </button>
+          <div ><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
+          <h3 >Page: {page}</h3>
+          <div ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
         </div>
       </div>
         )
@@ -63,7 +68,6 @@ import loading from'../../media/loading.gif'
   function mapDispatchToProps(dispatch){
     return {
       getAllGames: () => dispatch(getAllGames()),
-      getAllGenres: () => dispatch(getAllGenres())
 
     }
   }
