@@ -1,7 +1,6 @@
 .NB{
   display: grid;  
   position: fixed ;
-  background: rgba(58, 58, 58, 0.404);
 }
 
 .h{
@@ -14,6 +13,7 @@
 }
 
 .v{
+    float: right;
     grid-area: 1 / 5 / 2 / 6;
     color: rgba(28, 192, 241, 0.959);
     font-weight: 600;
@@ -24,10 +24,12 @@
 }
 
 .sb{
+  float: left;
   height: min-content;
 }
 
 .filter{
+  float: center;
   height: min-content;
 }
 
