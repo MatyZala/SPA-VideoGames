@@ -1,6 +1,7 @@
 .NB{
   display: grid;  
   position: fixed ;
+  margin-left: 25%;
 }
 
 .h{
