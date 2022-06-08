@@ -47,6 +47,7 @@
     box-sizing: border-box;
     background: rgba(5, 122, 50, 0.7); 
     border-radius: 6px; 
+    margin-top: 20px;
   }
 
 .selector select{
