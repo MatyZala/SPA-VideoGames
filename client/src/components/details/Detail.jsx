@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import './Detail.css'
 import img from '../../media/imagen.jpg'
+import loading from'../../media/loading.gif'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -48,9 +49,10 @@ export default function Detail() {
               : myVideogame.platforms.map((el) => el.name + " ")}
           </span>
         </div>
-      ) : (
-        <p>Loading..</p>
-      )}
+      ) : (<div className='imd'>
+      <img className='imgd' src={loading} alt="Loading" />
+      <p>Cargando VideoJuego</p>
+      </div>)}
     </div>
   );
 }

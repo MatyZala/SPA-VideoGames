@@ -89,3 +89,14 @@ color: rgb(22, 222, 236);
 font-weight: 700;
 }
 
+.imgd{
+    margin-left: 20%;
+    margin-top: 20px;
+    border-radius: 5px;
+    background: grey;
+    box-shadow: 2px 2px 2px 0.5 black;
+}
+
+.imd{
+    background: grey;
+}

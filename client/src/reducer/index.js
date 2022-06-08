@@ -29,9 +29,7 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 videogames: createdFilter
             };
-        case 'REFRESH':{
-            return({...state, gameDetail: undefined})
-        };
+        case 'REFRESH':return({...state, gameDetail: undefined});
         case 'ORDER_BY_NAME': 
         let sortedArr = action.payload === 'Asc' ? 
         state.videogames.sort(function (a, b) {

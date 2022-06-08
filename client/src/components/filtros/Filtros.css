@@ -5,6 +5,7 @@
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    height: 30%;
 }
 
 .selecta{
@@ -15,6 +16,7 @@
   box-sizing: border-box;
   background: rgba(231, 22, 109, 0.753); 
   border-radius: 6px; 
+  height: min-content;
 }
 
 .selectb{

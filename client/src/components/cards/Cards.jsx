@@ -33,7 +33,7 @@ import imagen from '../../media/imagen.jpg'
 
     return(
       <div className='cc'>
-         <div className='paginado'>
+         <div className='paginado1'>
          <div className='a'><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
           <h3 className='num'>Pag: {page}</h3>
           <div className='s' ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
