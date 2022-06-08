@@ -79,7 +79,6 @@ export default function CreateVideogame() {
             ...input,
             [e.target.name]:  e.target.value 
         }))
-        console.log(input)
     }
 
     const handleCheckPlatforms = (e) => {
@@ -93,9 +92,7 @@ export default function CreateVideogame() {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(input)
         dispatch(postVideogame(input))
-        console.log(input);
         alert('Videojuego Agregado A La Wiki-Games Con Exito!')
         setInput({
             name: '',
@@ -270,9 +267,6 @@ export default function CreateVideogame() {
               </option>
             ))}
           </select>
-{/*           <ul>
-            <li>{input.genres.map((el) => el + " ,")}</li>
-          </ul> */}
         </div>
         {input.genres.map((el) => (
           <div className="gres">

@@ -81,7 +81,6 @@ router.get('/videogames', async (req, res)=> {
         res.status(404).send('Game not found'); 
     }else{
         res.status(200).json(totalVideogames)
-/*         console.log(totalVideogames); */
     }
 });
 
@@ -142,7 +141,6 @@ router.post('/videogame', async (req, res) => {
         let genreDb = await Genre.findAll({
             where: {name: genres}
         })
-/*         console.log(genreDb) */
         gameCreated.addGenre(genreDb);
         res.send('Personaje creado con exito!');
     } catch (e) {

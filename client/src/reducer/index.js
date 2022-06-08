@@ -17,7 +17,6 @@ function rootReducer (state = initialState, action) {
         case 'FILTER_CREATED':
             if(state.videogames !== state.unfilteredVideogame) state.videogames = state.unfilteredVideogame
             const allGames = state.videogames;
-            console.log(allGames);
             let createdFilter = []
             if(action.payload === 'db'){
                 createdFilter = allGames.filter(vg => (typeof vg.ID) === 'string')
@@ -26,7 +25,6 @@ function rootReducer (state = initialState, action) {
                     createdFilter = allGames.filter(vg => (typeof vg.ID) === 'number')
                 } else createdFilter = state.unfilteredVideogame
             }
-            console.log(createdFilter);
             return{
                 ...state,
                 videogames: createdFilter

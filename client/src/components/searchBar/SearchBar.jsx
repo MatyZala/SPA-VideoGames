@@ -10,7 +10,6 @@ export default function SearchBar() {
   function handleImputChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    console.log(name);
   }
   function handleSubmit(e) {
     e.preventDefault();

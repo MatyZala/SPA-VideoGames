@@ -2,8 +2,7 @@ import axios from 'axios'
 
 export const getAllGames = () => {
     return async(dispatch) => {
-        let json = await axios.get('/videogames');
-        console.log('SOY DATA', json.data );
+        let json = await axios.get('/videogames'); 
         return dispatch({
             type: 'GET_ALL_GAMES',
             payload: json.data
@@ -64,7 +63,6 @@ export function filterVideogamesByGenre(payload) {
 export const getAllGenres = () => {
     return async(dispatch) => {
         const res = await axios.get('/genres');
-        console.log(res.data);
         return dispatch({
             type: 'GET_ALL_GENRES',
             payload: res.data
@@ -75,7 +73,6 @@ export const getAllGenres = () => {
 export const getVideogameById = (idVideogame) => {
     return async(dispatch) => {
         let res = await axios.get(`/videogame/${idVideogame}`)
-        console.log(res.data);
          return dispatch({type: 'GET_VIDEOGAME_BY_ID', payload: res.data})  
     }
 }

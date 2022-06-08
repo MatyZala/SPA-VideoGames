@@ -15,7 +15,6 @@ export function Filtros(props){
         e.preventDefault();
         props.orderByName(e.target.value)
         props.setCont(props.cont + 1)  
-        console.log(e.target.value);
     }
 
     function handleSortRating(e) {
@@ -25,8 +24,7 @@ export function Filtros(props){
     }
     
     function handleFilterCreated (e){
-        props.filterCreated(e.target.value, props.videogames , props.unfilteredVideogame)
-        console.log('ENTRO');
+        props.filterCreated(e.target.value, props.videogames , props.unfilteredVideogame) 
     }
 
         return(            

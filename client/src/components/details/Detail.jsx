@@ -16,7 +16,6 @@ export default function Detail() {
   }, [dispatch, idVideogame]);
 
   const myVideogame = useSelector((state) => state.gameDetail);
-  console.log(myVideogame);
 
   return (
     <div >
