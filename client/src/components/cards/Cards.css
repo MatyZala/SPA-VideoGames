@@ -16,8 +16,7 @@
     align-items: center;
 }
 
-.paginado1{
-    padding-top: 40px;
+.paginado1{ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,22 +55,12 @@
 
 .num{
 color: rgba(0, 255, 255, 0.795);
-margin-top: 200px;
 text-decoration: underline;
 
 }
 
-.a{
-    margin-top: 180px;
-}
-
-.s{
-    margin-top: 180px;
-}
-
 .a button:hover{
     cursor: pointer;
-
 }
 
 .imgl{

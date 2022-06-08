@@ -34,9 +34,9 @@ import imagen from '../../media/imagen.jpg'
     return(
       <div className='cc'>
          <div className='paginado1'>
-         <div className='a'><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
+         <div><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
           <h3 className='num'>Pag: {page}</h3>
-          <div className='s' ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
+          <div ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
         </div>
         <div id="vgCards">
           {videogame[0] ? videogame.map(vg =>
@@ -54,7 +54,7 @@ import imagen from '../../media/imagen.jpg'
         </div>
         <div className='paginado'>
           <div ><button onClick={()=> setPage(page - 1)}> Anterior </button></div>
-          <h3 >Pag: {page}</h3>
+          <h3 className='num'>Pag: {page}</h3>
           <div ><button onClick={() => setPage(page + 1)}> Siguiente </button></div>
         </div>
       </div>
