@@ -51,7 +51,6 @@ export default function Detail() {
         </div>
       ) : (<div className='imd'>
       <img className='imgd' src={loading} alt="Loading" />
-      <p>Cargando VideoJuego</p>
       </div>)}
     </div>
   );

@@ -3,6 +3,10 @@
   position: fixed ;
   margin-left: auto;
   margin-right: auto;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 220px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
 .h{
@@ -29,6 +33,7 @@
 }
 
 .filter{
+  grid-area: 1 / 3 / 2 / 4;
   height: min-content;
 }
 

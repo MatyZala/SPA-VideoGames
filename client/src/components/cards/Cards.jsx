@@ -50,7 +50,6 @@ import imagen from '../../media/imagen.jpg'
           </div>          
           ): (<div className='cat'>
             <img className='imgl' src={loading} alt="Loading" />
-            <p>Cargando VideoJuegos</p>
             </div>)}
         </div>
         <div className='paginado'>
