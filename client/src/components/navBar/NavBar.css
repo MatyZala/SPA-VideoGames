@@ -1,8 +1,8 @@
 .NB{
   display: grid;  
   position: fixed ;
-  margin-left: 25%;
-  padding-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .h{
